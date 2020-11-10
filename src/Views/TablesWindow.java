@@ -46,7 +46,8 @@ public class TablesWindow extends JFrame {
          cancel.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
-                dispose();
+                 dispose();
+                window.setVisible(true);
              }
          });
 

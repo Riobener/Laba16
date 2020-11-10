@@ -68,6 +68,7 @@ public class MainWindow extends JFrame {
                 TablesWindow tablesWindow = new TablesWindow(tableManager,wind);
                 tablesWindow.setVisible(true);
                 setVisible(false);
+                add.setEnabled(true);
             }
         });
         delete.addActionListener(new ActionListener() {

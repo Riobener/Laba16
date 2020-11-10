@@ -89,6 +89,7 @@ public class MakeOrderWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                window.setVisible(true);
             }
         });
         ready.addActionListener(new ActionListener() {
@@ -381,6 +382,7 @@ public class MakeOrderWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                window1.setVisible(true);
             }
         });
         ready.addActionListener(new ActionListener() {

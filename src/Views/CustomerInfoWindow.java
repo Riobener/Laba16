@@ -63,6 +63,7 @@ public class CustomerInfoWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                window.setVisible(true);
             }
         });
         setContentPane(contents);
@@ -122,6 +123,7 @@ public class CustomerInfoWindow extends JFrame {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                window.setVisible(true);
                 dispose();
             }
         });

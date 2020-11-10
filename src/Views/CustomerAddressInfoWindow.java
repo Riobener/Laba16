@@ -109,6 +109,7 @@ public class CustomerAddressInfoWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                window.setVisible(true);
             }
         });
         JPanel contents = new JPanel();

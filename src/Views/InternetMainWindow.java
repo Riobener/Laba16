@@ -62,6 +62,7 @@ public class InternetMainWindow extends JFrame {
                 CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(wind,manager);
                 customerInfoWindow.setVisible(true);
                 setVisible(false);
+                add.setEnabled(true);
             }
         });
         delete.addActionListener(new ActionListener() {
