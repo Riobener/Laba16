@@ -61,7 +61,7 @@ public class InternetMainWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(wind,manager);
                 customerInfoWindow.setVisible(true);
-
+                setVisible(false);
             }
         });
         delete.addActionListener(new ActionListener() {
@@ -144,6 +144,7 @@ public class InternetMainWindow extends JFrame {
     }
 
     protected void refresh(Order order, boolean isRewritable) {
+        setVisible(true);
         edit.setEnabled(true);
         delete.setEnabled(true);
         info.setEnabled(true);

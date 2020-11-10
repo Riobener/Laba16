@@ -67,6 +67,7 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 TablesWindow tablesWindow = new TablesWindow(tableManager,wind);
                 tablesWindow.setVisible(true);
+                setVisible(false);
             }
         });
         delete.addActionListener(new ActionListener() {
@@ -149,6 +150,7 @@ public class MainWindow extends JFrame {
     }
 
     protected void refresh(Order order, int table, boolean isRewritable) {
+        setVisible(true);
         edit.setEnabled(true);
         delete.setEnabled(true);
         info.setEnabled(true);
