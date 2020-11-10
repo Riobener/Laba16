@@ -65,6 +65,7 @@ public class MainWindow extends JFrame {
 
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                add.setEnabled(false);
                 TablesWindow tablesWindow = new TablesWindow(tableManager,wind);
                 tablesWindow.setVisible(true);
                 setVisible(false);
@@ -94,11 +95,11 @@ public class MainWindow extends JFrame {
                         info.setEnabled(false);
                     }
                 }
-
             }
         });
         edit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 String str=list2.getSelectedValue();
                 String numberOnly= str.replaceAll("[^0-9]", "");
                 int selectedIndex = list2.getSelectedIndex();
@@ -113,6 +114,7 @@ public class MainWindow extends JFrame {
         });
         info.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 String str=list2.getSelectedValue();
                 String numberOnly= str.replaceAll("[^0-9]", "");
                 int selectedIndex = list2.getSelectedIndex();
@@ -151,6 +153,7 @@ public class MainWindow extends JFrame {
 
     protected void refresh(Order order, int table, boolean isRewritable) {
         setVisible(true);
+        add.setEnabled(true);
         edit.setEnabled(true);
         delete.setEnabled(true);
         info.setEnabled(true);

@@ -22,7 +22,6 @@ public class InternetMainWindow extends JFrame {
     JButton delete = new JButton("Finish order");
     JButton info = new JButton("Order info");
     public InternetMainWindow(MainWindow window) throws NullPointerException {
-
         super("Internet Restaurant");
         InternetMainWindow wind = this;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,6 +58,7 @@ public class InternetMainWindow extends JFrame {
 
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                add.setEnabled(false);
                 CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(wind,manager);
                 customerInfoWindow.setVisible(true);
                 setVisible(false);
