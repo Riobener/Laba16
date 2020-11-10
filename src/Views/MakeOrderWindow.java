@@ -63,6 +63,14 @@ public class MakeOrderWindow extends JFrame {
         for (int i = 0; i < labels.length; i++) {
             labels[i].setToolTipText("I'm too lazy to print here smth");
             spinInt[i].setToolTipText("I'm too lazy to print here smth");
+            if(customer.getAge()<18){
+                if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10){
+                    spinInt[i].setModel(new SpinnerNumberModel(value, 0, 10, 0));
+                    JFormattedTextField tf = ((JSpinner.DefaultEditor) spinInt[i].getEditor()).getTextField();
+                    tf.setEditable(false);
+                    tf.setBackground(Color.white);
+                }
+            }
             contents1.add(labels[i]);
             contents1.add(spinInt[i]);
         }
@@ -295,11 +303,13 @@ public class MakeOrderWindow extends JFrame {
 
         //theMostMainCont.add(mainCont);
 
-
         setContentPane(theMostMainCont);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(500, 430);
         setLocationRelativeTo(null);
+        if(customer.getAge()<18)
+            JOptionPane.showMessageDialog(MakeOrderWindow.this,
+                    "Alcohol is not available for this age!");
     }
     MakeOrderWindow(InternetMainWindow window1, Customer customer) {
         super("Choosing window");
@@ -345,6 +355,14 @@ public class MakeOrderWindow extends JFrame {
         for (int i = 0; i < labels.length; i++) {
             labels[i].setToolTipText("I'm too lazy to print here smth");
             spinInt[i].setToolTipText("I'm too lazy to print here smth");
+            if(customer.getAge()<18){
+                if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10){
+                    spinInt[i].setModel(new SpinnerNumberModel(value, 0, 10, 0));
+                    JFormattedTextField tf = ((JSpinner.DefaultEditor) spinInt[i].getEditor()).getTextField();
+                    tf.setEditable(false);
+                    tf.setBackground(Color.white);
+                }
+            }
             contents1.add(labels[i]);
             contents1.add(spinInt[i]);
         }
@@ -577,11 +595,16 @@ public class MakeOrderWindow extends JFrame {
 
         //theMostMainCont.add(mainCont);
 
+        if(customer.getAge()<18){
 
+        }
         setContentPane(theMostMainCont);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(500, 430);
         setLocationRelativeTo(null);
+        if(customer.getAge()<18)
+            JOptionPane.showMessageDialog(MakeOrderWindow.this,
+                    "Alcohol is not available for this age!");
     }
 
 }

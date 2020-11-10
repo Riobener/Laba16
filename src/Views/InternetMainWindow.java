@@ -59,7 +59,7 @@ public class InternetMainWindow extends JFrame {
 
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(wind);
+                CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(wind,manager);
                 customerInfoWindow.setVisible(true);
 
             }
@@ -96,6 +96,9 @@ public class InternetMainWindow extends JFrame {
                 String numberOnly= str.replaceAll("[^0-9]", "");
                 int selectedIndex = list2.getSelectedIndex();
                 if (selectedIndex != -1) {
+                    if(manager.getOrder(Integer.parseInt(numberOnly)).getCustomer().getAge()<18)
+                        JOptionPane.showMessageDialog(InternetMainWindow.this,
+                                "Alcohol is not available for this age!");
                     ChangeOrderWindow changeOrderWindow= new ChangeOrderWindow(wind,manager,Integer.parseInt(numberOnly));
                    changeOrderWindow.setVisible(true);
                 }

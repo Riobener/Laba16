@@ -2,6 +2,8 @@ package Views;
 
 import Client_info.Address;
 import Client_info.Customer;
+import InternetOrders.InternetOrdersManager;
+import com.company.Order;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CustomerAddressInfoWindow extends JFrame {
-    public CustomerAddressInfoWindow(InternetMainWindow window, Customer customer){
+    public CustomerAddressInfoWindow(InternetMainWindow window, Customer customer, InternetOrdersManager manager){
         super("Client Address Info");
 
         InternetMainWindow window1 = window;
@@ -61,22 +63,45 @@ public class CustomerAddressInfoWindow extends JFrame {
                 String buildL1 = buildingLetter.getText().replaceAll("\\s+","");
                 String buildN1 = buildingNumber.getText().replaceAll("\\s+","");
                 String apart1 =  apartmentNumber.getText().replaceAll("\\s+","");
-                if ((city1.matches("[a-zA-Z]+"))&&
-                        (zip1.matches("\\d+"))&&
-                        (street1.matches("[a-zA-Z]+"))&&
-                        (buildL1.matches("[a-zA-Z]+")&& buildL1.length()==1)&&
-                        (buildN1.matches("\\d+"))&&
-                        (apart1.matches("\\d+"))) {
-                    Customer cust = new Customer(customer.getFirstName(), customer.getSecondName(),
-                            customer.getAge(), new Address(city1, Integer.parseInt(zip1), street1,
-                            Integer.parseInt(buildN1), buildL1.charAt(0), Integer.parseInt(apart1)));
-                    MakeOrderWindow orderWindow = new MakeOrderWindow(window1,
-                            cust);
-                    orderWindow.setVisible(true);
-                    dispose();
+                boolean flag = false;
+                Order[] orders = manager.getOrders();
+                for (int i = 0; i < orders.length; i++) {
+
+                        try {
+                            if (orders[i].getCustomer().getAddress().getCityName().equals(city1) &&
+                                    orders[i].getCustomer().getAddress().getStreetName().equals(street1) &&
+                                    String.valueOf(orders[i].getCustomer().getAddress().getBuildingLetter()).equals(buildL1) &&
+                                    String.valueOf(orders[i].getCustomer().getAddress().getBuildingNumber()).equals(buildN1)&&
+                                    String.valueOf(orders[i].getCustomer().getAddress().getApartmentNumber()).equals(apart1)) {
+                                flag=true;
+                            }
+                        }catch (NullPointerException ex){
+
+
+                    }
+                }
+                if(flag==false) {
+                    if ((city1.matches("[a-zA-Z]+")) &&
+                            (zip1.matches("\\d+")) &&
+                            (street1.matches("[a-zA-Z]+")) &&
+                            (buildL1.matches("[a-zA-Z]+") && buildL1.length() == 1) &&
+                            (buildN1.matches("\\d+")) &&
+                            (apart1.matches("\\d+"))) {
+
+                        Customer cust = new Customer(customer.getFirstName(), customer.getSecondName(),
+                                customer.getAge(), new Address(city1, Integer.parseInt(zip1), street1,
+                                Integer.parseInt(buildN1), buildL1.charAt(0), Integer.parseInt(apart1)));
+                        MakeOrderWindow orderWindow = new MakeOrderWindow(window1,
+                                cust);
+                        orderWindow.setVisible(true);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(CustomerAddressInfoWindow.this,
+                                "You entered smth wrong!");
+                    }
                 }else{
                     JOptionPane.showMessageDialog(CustomerAddressInfoWindow.this,
-                            "You entered smth wrong!");
+                            "Already exist!");
                 }
             }
         });

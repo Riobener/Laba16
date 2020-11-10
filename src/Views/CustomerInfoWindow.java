@@ -2,6 +2,7 @@ package Views;
 
 import Client_info.Address;
 import Client_info.Customer;
+import InternetOrders.InternetOrdersManager;
 import TableOrders.TableOrdersManager;
 import com.company.Order;
 
@@ -47,7 +48,8 @@ public class CustomerInfoWindow extends JFrame {
                 String age1 = age.getText().replaceAll("\\s+","");
                 if ((name1.matches("[a-zA-Z]+"))&&
                         (surname1.matches("[a-zA-Z]+"))&&
-                        (age1.matches("\\d+"))) {
+                        (age1.matches("\\d+")&&Integer.parseInt(age1)<100&&Integer.parseInt(age1)>10)) {
+
                     MakeOrderWindow orderWindow = new MakeOrderWindow(window1,selectedIndex,
                             new Customer(name1,surname1,Integer.parseInt(age1)));
                     orderWindow.setVisible(true);
@@ -69,7 +71,7 @@ public class CustomerInfoWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    CustomerInfoWindow(InternetMainWindow window){
+    CustomerInfoWindow(InternetMainWindow window, InternetOrdersManager manager){
         super("Client Info");
         InternetMainWindow window2 = window;
         JPanel namePan = new JPanel(new GridLayout(1,2));
@@ -106,9 +108,9 @@ public class CustomerInfoWindow extends JFrame {
 
                 if ((name1.matches("[a-zA-Z]+"))&&
                         (surname1.matches("[a-zA-Z]+"))&&
-                        (age1.matches("\\d+"))) {
+                        (age1.matches("\\d+")&&Integer.parseInt(age1)<100&&Integer.parseInt(age1)>10)) {
                     CustomerAddressInfoWindow wind = new CustomerAddressInfoWindow(window2, new Customer(
-                            name1, surname1, Integer.parseInt(age1)));
+                            name1, surname1, Integer.parseInt(age1)),manager);
                     wind.setVisible(true);
                     dispose();
                 }else{

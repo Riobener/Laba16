@@ -15,7 +15,7 @@ public class TablesWindow extends JFrame {
          JList<String> list2 = new JList<String>(dlm);
          list2.setFixedCellHeight(30);
          list2.setFixedCellWidth(300);
-
+         Order[] orders = manager.getOrders();
          JPanel buttonPanel = new JPanel(new FlowLayout());
          JPanel mainContent = new JPanel();
          JLabel tableNumberInfo = new JLabel("Please, choose a free table: ");
@@ -28,8 +28,17 @@ public class TablesWindow extends JFrame {
              public void actionPerformed(ActionEvent e) {
                  int selectedIndex = list2.getSelectedIndex();
                  if (selectedIndex != -1) {
-                     CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(window1,selectedIndex);
-                     dispose();
+                     try {
+                         if (orders[selectedIndex]!=null){
+                             JOptionPane.showMessageDialog(TablesWindow.this,
+                                     "Table is not free!");
+                         }else{
+                             CustomerInfoWindow customerInfoWindow = new CustomerInfoWindow(window1, selectedIndex);
+                             dispose();
+                         }
+                     }catch(NullPointerException ex){
+
+                     }
                  }
 
              }
@@ -41,7 +50,7 @@ public class TablesWindow extends JFrame {
              }
          });
 
-         Order[] orders = manager.getOrders();
+         
          for(int i = 0; i<orders.length;i++){
              try{
                  if(orders[i]==null)

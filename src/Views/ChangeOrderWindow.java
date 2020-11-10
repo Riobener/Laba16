@@ -22,6 +22,7 @@ import static java.lang.Integer.valueOf;
 
 public class ChangeOrderWindow extends JFrame {
     ChangeOrderWindow(InternetMainWindow window1, InternetOrdersManager manager, int orderNumber) {
+
         super("Changing the internet order № "+orderNumber);
         JTabbedPane jtp = new JTabbedPane();
 
@@ -77,6 +78,14 @@ public class ChangeOrderWindow extends JFrame {
             }
             labels[i].setToolTipText("I'm too lazy to print here smth");
             spinInt[i].setToolTipText("I'm too lazy to print here smth");
+            if(manager.getOrder(orderNumber).getCustomer().getAge()<18){
+                if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10){
+                    spinInt[i].setModel(new SpinnerNumberModel(value, 0, 10, 0));
+                    JFormattedTextField tf = ((JSpinner.DefaultEditor) spinInt[i].getEditor()).getTextField();
+                    tf.setEditable(false);
+                    tf.setBackground(Color.white);
+                }
+            }
             contents1.add(labels[i]);
             contents1.add(spinInt[i]);
         }
@@ -331,6 +340,7 @@ public class ChangeOrderWindow extends JFrame {
     }
     ChangeOrderWindow(MainWindow window,  TableOrdersManager manager,int chosenTable) {
         super("Changing the order under the table № "+chosenTable);
+
         JTabbedPane jtp = new JTabbedPane();
 
         int value = 0;
@@ -382,6 +392,15 @@ public class ChangeOrderWindow extends JFrame {
 
             }catch (NullPointerException ex){
 
+            }
+            if(manager.getOrder(chosenTable).getCustomer().getAge()<18){
+
+                if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10){
+                    spinInt[i].setModel(new SpinnerNumberModel(value, 0, 10, 0));
+                    JFormattedTextField tf = ((JSpinner.DefaultEditor) spinInt[i].getEditor()).getTextField();
+                    tf.setEditable(false);
+                    tf.setBackground(Color.white);
+                }
             }
             contents1.add(labels[i]);
             contents1.add(spinInt[i]);

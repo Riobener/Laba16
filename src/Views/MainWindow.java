@@ -102,6 +102,9 @@ public class MainWindow extends JFrame {
                 String numberOnly= str.replaceAll("[^0-9]", "");
                 int selectedIndex = list2.getSelectedIndex();
                 if (selectedIndex != -1) {
+                    if(tableManager.getOrder(Integer.parseInt(numberOnly)).getCustomer().getAge()<18)
+                        JOptionPane.showMessageDialog(MainWindow.this,
+                                "Alcohol is not available for this age!");
                     ChangeOrderWindow changeOrderWindow= new ChangeOrderWindow(wind,tableManager,Integer.parseInt(numberOnly));
                     changeOrderWindow.setVisible(true);
                 }
