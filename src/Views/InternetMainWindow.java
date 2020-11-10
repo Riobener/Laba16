@@ -140,7 +140,6 @@ public class InternetMainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(750, 530);
         setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     protected void refresh(Order order, boolean isRewritable) {

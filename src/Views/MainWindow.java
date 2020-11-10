@@ -30,7 +30,6 @@ public class MainWindow extends JFrame {
 
         super("Restaurant");
         internet = new InternetMainWindow(wind);
-        internet.setVisible(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JMenuBar menuBar = new JMenuBar();
         JMenu type = new JMenu("Restaurant type");
